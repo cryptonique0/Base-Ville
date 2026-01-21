@@ -2,6 +2,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../ui/button'
+import { Input } from '../ui/input'
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email')
@@ -23,12 +24,7 @@ export function NewsletterForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-md space-y-3">
       <div>
         <label className="block text-sm mb-1">Email</label>
-        <input
-          type="email"
-          className="w-full rounded-md bg-white/10 border border-white/20 px-3 py-2 outline-none focus:ring-2 focus:ring-white/30"
-          placeholder="you@example.com"
-          {...register('email')}
-        />
+        <Input type="email" placeholder="you@example.com" {...register('email')} />
         {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>}
       </div>
       <Button type="submit" disabled={isSubmitting}>
